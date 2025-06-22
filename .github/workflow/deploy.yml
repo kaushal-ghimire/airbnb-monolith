@@ -1,19 +1,16 @@
-name: Deploy Airbnb Monolith
+name: Java CI
 
 on:
   push:
     branches: [master]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-      with:
-        distribution: 'temurin'
 
-    - name: Set up JDK 17
+    - name: Set up Java
       uses: actions/setup-java@v2
       with:
         distribution: 'temurin'
@@ -21,6 +18,3 @@ jobs:
 
     - name: Build with Maven
       run: mvn clean install
-
-    - name: Deploy
-      run: echo "Deploying monolithic app to server..."
